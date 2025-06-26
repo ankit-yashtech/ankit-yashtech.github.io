@@ -1,136 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PPT-Style JSON Slideshow</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: linear-gradient(120deg, #74ebd5 0%, #ACB6E5 100%);
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slideshow-container {
-      width: 600px;
-      max-width: 95vw;
-      min-height: 350px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 6px 32px rgba(0,0,0,0.15);
-      padding: 40px 30px 30px 30px;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.4s;
-    }
-    .slide {
-      opacity: 0;
-      transform: scale(0.96);
-      transition: opacity 0.5s, transform 0.5s;
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      padding: 0 10px;
-    }
-    .slide.active {
-      opacity: 1;
-      transform: scale(1);
-      position: relative;
-      z-index: 2;
-    }
-    .slide h2 {
-      margin: 0 0 18px 0;
-      color: #007BFF;
-      font-size: 2rem;
-      letter-spacing: 1px;
-    }
-    .slide p {
-      font-size: 1.2rem;
-      color: #222;
-    }
-    .slide img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin: 20px 0;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    .nav-btns {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-    }
-    button {
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    button:disabled {
-      background: #b5d0f7;
-      cursor: not-allowed;
-    }
-    button:hover:not(:disabled) {
-      background: #0056b3;
-      transform: scale(1.07);
-    }
-    .slide-indicator {
-      position: absolute;
-      bottom: 18px;
-      right: 30px;
-      color: #888;
-      font-size: 1rem;
-      letter-spacing: 1px;
-    }
-    @media (max-width: 700px) {
-      .slideshow-container {
-        padding: 18px 5px 24px 5px;
-      }
-      .slide h2 { font-size: 1.3rem;}
-      .slide p { font-size: 1rem;}
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ankit Shukla | Data Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="slideshow-container" id="slideshow">
-    <!-- Slides will be injected here -->
-    <div class="nav-btns">
-      <button id="prevBtn">Previous</button>
-      <button id="nextBtn">Next</button>
-    </div>
-    <div class="slide-indicator" id="slideIndicator"></div>
+  <div class="container">
+    <section class="profile">
+      <img id="profile-photo" src="profile_photo.jpg" alt="Ankit Shukla's profile photo">
+      <div>
+        <h1 id="profile-name"></h1>
+        <h3 id="profile-title"></h3>
+        <p>Email: <a id="profile-email"></a></p>
+        <p>LinkedIn: <a id="profile-linkedin" target="_blank"></a></p>
+      </div>
+    </section>
+    <section class="section">
+      <h2>About Me</h2>
+      <p id="about-me"></p>
+    </section>
+    <section class="section">
+      <h2>Current Work</h2>
+      <ul id="current-work-list"></ul>
+    </section>
+    <section class="section">
+      <h2>Connect with Me</h2>
+      <div class="social-icons" id="social-icons"></div>
+    </section>
+    <section class="section">
+      <h2>Languages and Tools</h2>
+      <div class="languages" id="languages"></div>
+    </section>
   </div>
-  <script>
-    // JSON data for slides
-    const slidesData = [
-      {
-        "title": "Welcome to the Slideshow",
-        "content": "This is a simple PowerPoint-style slideshow powered by JSON and HTML.",
-        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        "title": "Why JSON?",
-        "content": "JSON makes it easy to manage and update slide content without touching the HTML structure.",
-        "image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        "title": "How It Works",
-        "content": "Slides are generated dynamically from the JSON array. You can add, remove, or edit slides in the JSON.",
-        "image": ""
-      },
-      {
-        "title": "Get Creative!",
-        "content": "Add images, lists, or even custom HTML in your JSON for more engaging presentations.",
-        "image": "https://images.unsplash.com/photo-1465101178521-c1a9136a3e16?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        "title": "Thank You!",
-        "
+  <script src="script.js"></script>
+</body>
+</html>
