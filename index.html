@@ -4,110 +4,209 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ankit Shukla | Data Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     body {
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #87CEEB 0%, #ffffff 100%);
       margin: 0;
       padding: 0;
       color: #333;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
     .container {
       max-width: 900px;
-      margin: auto;
+      margin: 50px auto;
       background: #fff;
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      margin-top: 50px;
-      border-radius: 10px;
-      animation: fadeIn 2s ease-in-out;
+      padding: 30px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      animation: fadeIn 1.5s ease-in;
     }
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
     }
     .profile {
- gap: 20px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      animation: slideInLeft 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-80px);}
+      to { opacity: 1; transform: translateX(0);}
     }
     .profile img {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 3px solid #007BFF;
+      border: 4px solid #007BFF;
+      box-shadow: 0 8px 32px rgba(0,123,255,0.08);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-15px);}
     }
     h1 {
       margin: 0;
       color: #007BFF;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      animation: fadeIn 2s .2s backwards;
+    }
+    h3 {
+      margin: 8px 0 0 0;
+      color: #333;
+      font-weight: 400;
+      animation: fadeIn 2s .3s backwards;
     }
     .section {
-      margin-top: 30px;
+      margin-top: 38px;
+      animation: fadeInUp 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
     }
     .section h2 {
       color: #444;
-      border-bottom: 2px solid #007BFF;
-      padding-bottom: 5px;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 4px;
+      animation: underlineGrow 1s forwards;
+    }
+    .section h2::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #007BFF 60%, #87CEEB 100%);
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .section h2:hover::after {
+      width: 100%;
     }
     ul {
-      padding-left: 20px;
+      padding-left: 22px;
+      margin: 10px 0;
+      animation: fadeIn 1.2s .4s backwards;
     }
     a {
       color: #007BFF;
       text-decoration: none;
+      transition: color 0.2s;
     }
     a:hover {
       text-decoration: underline;
+      color: #0056b3;
+    }
+    .social-icons {
+      margin-top: 8px;
+      display: flex;
+      gap: 18px;
     }
     .social-icons a {
-      margin-right: 10px;
-      transition: transform 0.3s;
+      display: inline-block;
+      font-size: 2rem;
+      color: #007BFF;
+      transition: transform 0.4s, color 0.2s;
+      animation: iconBounce 2s infinite;
     }
     .social-icons a:hover {
-      transform: scale(1.2);
+      transform: scale(1.25) rotate(-10deg);
+      color: #0056b3;
+    }
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-8px);}
+    }
+    .languages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 12px;
+      animation: fadeInUp 1.2s .5s backwards;
     }
     .languages img {
-      margin-right: 10px;
-      transition: transform 0.3s;
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #f5f5f5;
+      box-shadow: 0 2px 8px rgba(0,123,255,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: toolPop 0.7s cubic-bezier(.68,-0.55,.27,1.55);
     }
     .languages img:hover {
-      transform: scale(1.2);
+      transform: scale(1.18) rotate(-8deg);
+      box-shadow: 0 8px 24px rgba(0,123,255,0.16);
+    }
+    @keyframes toolPop {
+      from { transform: scale(0.7);}
+      to { transform: scale(1);}
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container { padding: 10px;}
+      .profile { flex-direction: column; gap: 16px;}
+      .languages { gap: 10px;}
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="profile">
-      <img src="profile_photo.jpg" alt="Ankit Shukla">
+    <section class="profile">
+      <img src="profile_photo.jpg" alt="Ankit Shukla's profile photo">
       <div>
         <h1>Ankit Shukla</h1>
         <h3>Data Engineer</h3>
         <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>LinkedIn: https://linkedin.com/in/ankeetshk</p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/ankeetshk" target="_blank">linkedin.com/in/ankeetshk</a></p>
       </div>
-    </div>
-    <div class="section">
+    </section>
+    <section class="section">
       <h2>About Me</h2>
       <p>I am a passionate Data Engineer. I specialize in building robust data pipelines and leveraging machine learning to solve complex problems.</p>
-    </div>
-    <div class="section">
+    </section>
+    <section class="section">
       <h2>Current Work</h2>
-      <p>🔭 I’m currently working on <strong>AI Plant Issue Identifier</strong></p>
-      <p>🌱 I’m currently learning <strong>Machine Learning and Computer Vision</strong></p>
-      <p>👯 I’m looking to collaborate on <strong>AI and Agricultural Technology Projects</strong></p>
-      <p>🤝 I’m looking for help with <strong>Improving Model Accuracy</strong></p>
-      <p>💬 Ask me about <strong>AI, Machine Learning, and Plant Health</strong></p>
-      <p>⚡ Fun fact: <strong>I love gardening and experimenting with new plant varieties</strong></p>
-    </div>
-    <div class="section">
+      <ul>
+        <li>🔭 Currently working on <strong>AI Plant Issue Identifier</strong></li>
+        <li>🌱 Learning <strong>Machine Learning and Computer Vision</strong></li>
+        <li>👯 Looking to collaborate on <strong>AI and Agricultural Technology Projects</strong></li>
+        <li>🤝 Seeking help with <strong>Improving Model Accuracy</strong></li>
+        <li>💬 Ask me about <strong>AI, Machine Learning, and Plant Health</strong></li>
+        <li>⚡ Fun fact: <strong>I love gardening and experimenting with new plant varieties</strong></li>
+      </ul>
+    </section>
+    <section class="section">
       <h2>Connect with Me</h2>
       <div class="social-icons">
-        https://linkedin.com/in/ankeetshk
+        <a href="https://linkedin.com/in/ankeetshk" target="_blank" aria-label="LinkedIn">
+          <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.55 1.97 3.55 4.53v5.65z"/></svg>
+        </a>
+        <!-- Add more icons as needed -->
       </div>
-    </div>
-    <div class="section">
+    </section>
+    <section class="section">
       <h2>Languages and Tools</h2>
-     
+      <div class="languages">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQL" title="SQL">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg" alt="AWS" title="AWS">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow">
+        <!-- Add more as needed -->
+      </div>
+    </section>
+  </div>
+</body>
+</html>
