@@ -1,212 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ankit Shukla | Data Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>PPT-Style JSON Slideshow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #87CEEB 0%, #ffffff 100%);
+      background: linear-gradient(120deg, #74ebd5 0%, #ACB6E5 100%);
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
       min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 30px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.1);
-      border-radius: 16px;
-      animation: fadeIn 1.5s ease-in;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .profile {
       display: flex;
       align-items: center;
-      gap: 30px;
-      animation: slideInLeft 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      justify-content: center;
     }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-80px);}
-      to { opacity: 1; transform: translateX(0);}
-    }
-    .profile img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #007BFF;
-      box-shadow: 0 8px 32px rgba(0,123,255,0.08);
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0);}
-      50% { transform: translateY(-15px);}
-    }
-    h1 {
-      margin: 0;
-      color: #007BFF;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      animation: fadeIn 2s .2s backwards;
-    }
-    h3 {
-      margin: 8px 0 0 0;
-      color: #333;
-      font-weight: 400;
-      animation: fadeIn 2s .3s backwards;
-    }
-    .section {
-      margin-top: 38px;
-      animation: fadeInUp 1.2s cubic-bezier(.68,-0.55,.27,1.55);
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .section h2 {
-      color: #444;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+    .slideshow-container {
+      width: 600px;
+      max-width: 95vw;
+      min-height: 350px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.15);
+      padding: 40px 30px 30px 30px;
       position: relative;
-      display: inline-block;
-      padding-bottom: 4px;
-      animation: underlineGrow 1s forwards;
+      overflow: hidden;
+      transition: box-shadow 0.4s;
     }
-    .section h2::after {
-      content: '';
-      display: block;
+    .slide {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.5s, transform 0.5s;
       position: absolute;
-      left: 0; bottom: 0;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #007BFF 60%, #87CEEB 100%);
-      border-radius: 2px;
-      transition: width 0.6s cubic-bezier(.68,-0.55,.27,1.55);
-    }
-    .section h2:hover::after {
       width: 100%;
+      left: 0;
+      top: 0;
+      padding: 0 10px;
     }
-    ul {
-      padding-left: 22px;
-      margin: 10px 0;
-      animation: fadeIn 1.2s .4s backwards;
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+      z-index: 2;
     }
-    a {
+    .slide h2 {
+      margin: 0 0 18px 0;
       color: #007BFF;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: #0056b3;
-    }
-    .social-icons {
-      margin-top: 8px;
-      display: flex;
-      gap: 18px;
-    }
-    .social-icons a {
-      display: inline-block;
       font-size: 2rem;
-      color: #007BFF;
-      transition: transform 0.4s, color 0.2s;
-      animation: iconBounce 2s infinite;
+      letter-spacing: 1px;
     }
-    .social-icons a:hover {
-      transform: scale(1.25) rotate(-10deg);
-      color: #0056b3;
+    .slide p {
+      font-size: 1.2rem;
+      color: #222;
     }
-    @keyframes iconBounce {
-      0%, 100% { transform: translateY(0);}
-      50% { transform: translateY(-8px);}
+    .slide img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
-    .languages {
+    .nav-btns {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 12px;
-      animation: fadeInUp 1.2s .5s backwards;
+      justify-content: space-between;
+      margin-top: 30px;
     }
-    .languages img {
-      width: 48px;
-      height: 48px;
+    button {
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
       border-radius: 8px;
-      background: #f5f5f5;
-      box-shadow: 0 2px 8px rgba(0,123,255,0.06);
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: toolPop 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
     }
-    .languages img:hover {
-      transform: scale(1.18) rotate(-8deg);
-      box-shadow: 0 8px 24px rgba(0,123,255,0.16);
+    button:disabled {
+      background: #b5d0f7;
+      cursor: not-allowed;
     }
-    @keyframes toolPop {
-      from { transform: scale(0.7);}
-      to { transform: scale(1);}
+    button:hover:not(:disabled) {
+      background: #0056b3;
+      transform: scale(1.07);
     }
-    /* Responsive */
+    .slide-indicator {
+      position: absolute;
+      bottom: 18px;
+      right: 30px;
+      color: #888;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
     @media (max-width: 700px) {
-      .container { padding: 10px;}
-      .profile { flex-direction: column; gap: 16px;}
-      .languages { gap: 10px;}
+      .slideshow-container {
+        padding: 18px 5px 24px 5px;
+      }
+      .slide h2 { font-size: 1.3rem;}
+      .slide p { font-size: 1rem;}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="profile">
-      <img src="profile_photo.jpg" alt="Ankit Shukla's profile photo">
-      <div>
-        <h1>Ankit Shukla</h1>
-        <h3>Data Engineer</h3>
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/ankeetshk" target="_blank">linkedin.com/in/ankeetshk</a></p>
-      </div>
-    </section>
-    <section class="section">
-      <h2>About Me</h2>
-      <p>I am a passionate Data Engineer. I specialize in building robust data pipelines and leveraging machine learning to solve complex problems.</p>
-    </section>
-    <section class="section">
-      <h2>Current Work</h2>
-      <ul>
-        <li>🔭 Currently working on <strong>AI Plant Issue Identifier</strong></li>
-        <li>🌱 Learning <strong>Machine Learning and Computer Vision</strong></li>
-        <li>👯 Looking to collaborate on <strong>AI and Agricultural Technology Projects</strong></li>
-        <li>🤝 Seeking help with <strong>Improving Model Accuracy</strong></li>
-        <li>💬 Ask me about <strong>AI, Machine Learning, and Plant Health</strong></li>
-        <li>⚡ Fun fact: <strong>I love gardening and experimenting with new plant varieties</strong></li>
-      </ul>
-    </section>
-    <section class="section">
-      <h2>Connect with Me</h2>
-      <div class="social-icons">
-        <a href="https://linkedin.com/in/ankeetshk" target="_blank" aria-label="LinkedIn">
-          <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.55 1.97 3.55 4.53v5.65z"/></svg>
-        </a>
-        <!-- Add more icons as needed -->
-      </div>
-    </section>
-    <section class="section">
-      <h2>Languages and Tools</h2>
-      <div class="languages">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQL" title="SQL">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg" alt="AWS" title="AWS">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow">
-        <!-- Add more as needed -->
-      </div>
-    </section>
+  <div class="slideshow-container" id="slideshow">
+    <!-- Slides will be injected here -->
+    <div class="nav-btns">
+      <button id="prevBtn">Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+    <div class="slide-indicator" id="slideIndicator"></div>
   </div>
-</body>
-</html>
+  <script>
+    // JSON data for slides
+    const slidesData = [
+      {
+        "title": "Welcome to the Slideshow",
+        "content": "This is a simple PowerPoint-style slideshow powered by JSON and HTML.",
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "Why JSON?",
+        "content": "JSON makes it easy to manage and update slide content without touching the HTML structure.",
+        "image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "How It Works",
+        "content": "Slides are generated dynamically from the JSON array. You can add, remove, or edit slides in the JSON.",
+        "image": ""
+      },
+      {
+        "title": "Get Creative!",
+        "content": "Add images, lists, or even custom HTML in your JSON for more engaging presentations.",
+        "image": "https://images.unsplash.com/photo-1465101178521-c1a9136a3e16?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        "title": "Thank You!",
+        "
